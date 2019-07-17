@@ -90,9 +90,9 @@ class LibreNMSReport():
             csv_file.write('sep=,' + '\n')
             # Write columns names
             csv_file.write(
-                'Hostname,Start date,End date,'
-                'Duration in days (if more than 1 day),'
-                'Duration in hours' + '\n')
+                'Hostname, Start date, End date,'
+                ' Duration in days (if more than 1 day),'
+                ' Duration in hours' + '\n')
             # For each device and each downtime
             for device, timedata in self.report.items():
                 # Convert each tuple value to list of strings and add to row
