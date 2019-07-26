@@ -6,7 +6,7 @@ import mysql.connector as SQL
 # Import custom module contains auxiliary functions
 from aux_functions import converter_to_string
 # Import subprocess for send report by e-mail
-import subprocess
+from subprocess import Popen, PIPE
 
 
 # Class section
@@ -109,14 +109,19 @@ class LibreNMSReport():
         '''
         Send e-mail by invoking postfix (with Unix 'mail' utility)
         '''
-        subject_text = "Hello, dear customer ! There is a report for you !"
+        subject_text = 'Hello, dear customer ! There is a report for you !'
         attach_name = 'output.csv'
-        subprocess.call([
+        mail_body = Popen(["echo"], stdout=PIPE)
+        mail_sending = Popen([
             'mail',
             '-s',
             subject_text,
             self.e_mail,
             '-A',
-            attach_name,
-            ' < ',
-            '/dev/null'])
+            attach_name],
+            stdin=mail_body.stdout,
+            stdout=PIPE)
+        mail_body.stdout.close()
+        output = mail_sending.communicate()
+        print(output)
+        return output
