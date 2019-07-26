@@ -14,6 +14,6 @@ def converter_to_string(value):
 def get_credentials():
     passwd = getpass()
     with open('conf.txt', 'r') as config:
-        credentials = config.read()
+        credentials = config.readlines()
     credentials = tuple(credentials.append(passwd))
     return credentials
