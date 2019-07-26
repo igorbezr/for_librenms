@@ -1,4 +1,4 @@
-host = localhost
-user = username
-db_name = dbname
-e_mail = example@e-mail.com
+localhost
+username
+dbname
+example@e-mail.com

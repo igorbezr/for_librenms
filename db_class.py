@@ -118,5 +118,5 @@ class LibreNMSReport():
             self.e_mail,
             '-A',
             attach_name,
-            '<',
+            ' < ',
             '/dev/null'])

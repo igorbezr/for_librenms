@@ -15,5 +15,5 @@ def get_credentials():
     passwd = getpass()
     with open('conf.txt', 'r') as config:
         credentials = config.readlines()
-    credentials = tuple(credentials.append(passwd))
-    return credentials
+    credentials.append(passwd)
+    return tuple(credentials)
