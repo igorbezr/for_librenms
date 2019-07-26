@@ -123,5 +123,5 @@ class LibreNMSReport():
             stdout=PIPE)
         mail_body.stdout.close()
         output = mail_sending.communicate()
-        print(output)
+        print('Report for you has been successfully sending')
         return output

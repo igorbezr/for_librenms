@@ -12,7 +12,7 @@ def converter_to_string(value):
 
 # Function for getting DB credentials from config and password from the user
 def get_credentials():
-    passwd = getpass(promt='Please provide password for your DB > ')
+    passwd = getpass('Please provide password for your DB > ')
     with open('conf.txt', 'r') as config:
         credentials = config.readlines()
     credentials.append(passwd)
