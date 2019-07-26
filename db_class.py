@@ -5,6 +5,8 @@ Module contains class for working with MySQL LibreNMS DB
 import mysql.connector as SQL
 # Import custom module contains auxiliary functions
 from aux_functions import converter_to_string
+# Import subprocess for send report by e-mail
+import subprocess
 
 
 # Class section
@@ -12,14 +14,15 @@ class LibreNMSReport():
     '''
     Class for working with Librenms MySQL DB and generating reports
     '''
-    def __init__(self, host, user, passwd, db_name):
+    def __init__(self, host, user, db_name, e_mail, passwd):
         '''
         The __init__ method takes values needing to connect to the DB
         '''
         self.host = host
         self.user = user
-        self.passwd = passwd
         self.db_name = db_name
+        self.e_mail = e_mail
+        self.passwd = passwd
 
     def mariadb_send_query(self, query):
         '''
@@ -101,3 +104,19 @@ class LibreNMSReport():
                         [device] +
                         list(map(converter_to_string, list(tuple_value))))
                     csv_file.write(", ".join(csv_row) + "\n")
+
+    def send_mail(self):
+        '''
+        Send e-mail by invoking postfix (with Unix 'mail' utility)
+        '''
+        subject_text = "Hello, dear customer ! There is a report for you !"
+        attach_name = 'output.csv'
+        subprocess.call([
+            'mail',
+            '-s',
+            subject_text,
+            self.e_mail,
+            '-A',
+            attach_name,
+            '<',
+            '/dev/null'])

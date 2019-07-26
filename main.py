@@ -20,3 +20,5 @@ librenms.mariadb_send_query(
 librenms.resolve_device_id()
 # Export output to .csv file
 librenms.export_to_csv('output.csv')
+# Send report to customer by e-mail
+librenms.send_mail()
