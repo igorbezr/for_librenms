@@ -28,20 +28,34 @@ class LibreNMSReport():
         '''
         Method for send query to Maria DB and gets back the list of tuples
         '''
+        error_message = (
+            'Your password is incorrect ! ' + '\n'
+            'Program will be terminated now !')
+        ctrl_c_message = (
+            'You press Ctrl-C ! Program will be terminated now !')
         # Connection to the database
-        db = SQL.connect(
-            host=self.host,
-            user=self.user,
-            passwd=self.passwd,
-            database=self.db_name)
-        # Creation the cursor object
-        cursor = db.cursor()
-        # Send query to the DB
-        cursor.execute(query)
-        # Get result of the query
-        self.query_output = cursor.fetchall()
-        # Closing connection to the DB
-        db.close()
+        while True:
+            try:
+                db = SQL.connect(
+                    host=self.host,
+                    user=self.user,
+                    passwd=self.passwd,
+                    database=self.db_name)
+                # Creation the cursor object
+                cursor = db.cursor()
+                # Send query to the DB
+                cursor.execute(query)
+                # Get result of the query
+                self.query_output = cursor.fetchall()
+                # Closing connection to the DB
+                db.close()
+                return
+            except SQL.errors.ProgrammingError:
+                print(error_message)
+                exit()
+            except KeyboardInterrupt:
+                print(ctrl_c_message)
+                exit()
 
     def generate_report(self):
         '''
