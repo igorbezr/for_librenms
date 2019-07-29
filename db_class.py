@@ -28,11 +28,9 @@ class LibreNMSReport():
         '''
         Method for send query to Maria DB and gets back the list of tuples
         '''
-        error_message = (
+        passwd_error = (
             'Your password is incorrect ! ' + '\n'
             'Program will be terminated now !')
-        ctrl_c_message = (
-            'You press Ctrl-C ! Program will be terminated now !')
         generic_message = (
             'Something wrong with DB or conf.txt is incorrect !')
         # Connection to the database
@@ -53,10 +51,7 @@ class LibreNMSReport():
                 db.close()
                 return
             except SQL.errors.ProgrammingError:
-                print(error_message)
-                exit()
-            except KeyboardInterrupt:
-                print(ctrl_c_message)
+                print(passwd_error)
                 exit()
             except SQL.errors:
                 print(generic_message)
