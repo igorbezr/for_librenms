@@ -58,7 +58,7 @@ class LibreNMSReport():
             except KeyboardInterrupt:
                 print(ctrl_c_message)
                 exit()
-            except:
+            except SQL.errors:
                 print(generic_message)
 
     def generate_report(self):
