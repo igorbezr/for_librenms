@@ -42,7 +42,7 @@ def initial_dialog():
 # Function for getting DB credentials from config and password from the user
 def get_credentials():
     ctrl_c_message = (
-        'You press Ctrl-C ! Program will be terminated now !')
+        '\n' + 'You pressed Ctrl-C ! Program will be terminated now !')
     try:
         passwd = getpass('Please provide password for your DB > ')
     except KeyboardInterrupt:
