@@ -33,6 +33,8 @@ class LibreNMSReport():
             'Program will be terminated now !')
         ctrl_c_message = (
             'You press Ctrl-C ! Program will be terminated now !')
+        generic_message = (
+            'Something wrong with DB or conf.txt is incorrect !')
         # Connection to the database
         while True:
             try:
@@ -56,6 +58,8 @@ class LibreNMSReport():
             except KeyboardInterrupt:
                 print(ctrl_c_message)
                 exit()
+            except:
+                print(generic_message)
 
     def generate_report(self):
         '''
@@ -139,5 +143,5 @@ class LibreNMSReport():
             stdout=PIPE)
         mail_body.stdout.close()
         output = mail_sending.communicate()
-        print('Report for you has been successfully sending')
+        print('Report for you has been successfully sending !')
         return output

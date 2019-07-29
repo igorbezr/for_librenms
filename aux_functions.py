@@ -13,9 +13,9 @@ def converter_to_string(value):
 # Printing the greetings to the CLI
 def initial_dialog():
     greetings = (
-        ' Hello, dear customer !' + '\n'
-        ' This is script for generating the devices downtime report' + '\n'
-        ' Do you want to generate report ? [Yes/No]')
+        'Hello, dear customer !' + '\n'
+        'This is script for generating the devices downtime report' + '\n'
+        'Do you want to generate report ? [Yes/No]')
     processing = 'Program is starting, please wait ...'
     error_message = (
         'Please type "Yes", or "No"' + '\n'
