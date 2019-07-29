@@ -16,11 +16,11 @@ def initial_dialog():
         ' Hello, dear customer !' + '\n'
         ' This is script for generating the devices downtime report' + '\n'
         ' Do you want to generate report ? [Yes/No]')
-    processing = 'Request for you is generating now, please wait ...'
-    error = (
-        'Please provide "Yes", or "No" answer' + '\n'
+    processing = 'Program is starting, please wait ...'
+    error_message = (
+        'Please type "Yes", or "No"' + '\n'
         'Or press Ctrl-C for exit')
-    exit = 'Program has been successfully terminated !'
+    exit_message = 'Program has been successfully terminated !'
     print(greetings)
     while True:
         try:
@@ -29,13 +29,13 @@ def initial_dialog():
                 print(processing)
                 return
             elif answer == 'No':
-                print(exit)
+                print(exit_message)
                 exit()
                 return
             else:
-                print(error)
+                print(error_message)
         except KeyboardInterrupt:
-            print(exit)
+            print(exit_message)
             exit()
 
 
