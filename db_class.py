@@ -107,10 +107,12 @@ class LibreNMSReport():
 
     def send_mail(self):
         '''
-        Send e-mail by invoking postfix (with Unix 'mail' utility)
+        Send e-mail by invoking postfix from bash (with Unix 'mail' utility)
         '''
         subject_text = 'Hello, dear customer ! There is a report for you !'
         attach_name = 'output.csv'
+        # There are two process for sending mail in non-interactive mode
+        # using two process and PIPE object from subprocess
         mail_body = Popen(["echo"], stdout=PIPE)
         mail_sending = Popen([
             'mail',

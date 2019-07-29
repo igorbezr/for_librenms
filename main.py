@@ -3,9 +3,10 @@ Main module for working with LibreNMS
 '''
 # Import custom modules
 from db_class import LibreNMSReport
-from aux_functions import get_credentials
+from aux_functions import initial_dialog, get_credentials
 
-
+# Initial dialog with user
+initial_dialog()
 # Credentials for connection to the DB
 credentials = get_credentials()
 librenms = LibreNMSReport(*credentials)
@@ -13,6 +14,7 @@ librenms = LibreNMSReport(*credentials)
 librenms.mariadb_send_query(
     'SELECT device_id, state, time_logged FROM librenms.alert_log '
     'where rule_id = 1 order by device_id, time_logged;')
+# Creation of the report
 librenms.generate_report()
 # Send query about hostnames
 librenms.mariadb_send_query(
