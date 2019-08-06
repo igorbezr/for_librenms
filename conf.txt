@@ -1,4 +1,0 @@
-your_db_hostname_or_ip_address
-data_base_username
-data_base_name
-e-mail_address_for_sending_report

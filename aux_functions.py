@@ -3,6 +3,8 @@ Small module that contains auxiliary functions
 '''
 # Import getpass for getting the password from the user without echo
 from getpass import getpass
+# Import json to fetch data from the configuration file
+from json import load
 
 
 # Simple auxiliary function for usage with map()
@@ -48,7 +50,7 @@ def get_credentials():
     except KeyboardInterrupt:
                 print(ctrl_c_message)
                 exit()
-    with open('conf.txt', 'r') as config:
-        credentials = config.readlines()
-    credentials.append(passwd)
-    return tuple(credentials)
+    with open('config.json', 'r') as config:
+        credentials = load(config)
+    credentials['passwd'] = passwd
+    return tuple(credentials.values())

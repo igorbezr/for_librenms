@@ -1,0 +1,6 @@
+{
+    "hostname": "localhost", 
+    "username": "admin", 
+    "dbname": "sql", 
+    "e-mail": "support@example.com"
+}
