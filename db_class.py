@@ -32,7 +32,7 @@ class LibreNMSReport():
             'Your credentials is incorrect ! ' + '\n'
             'Program will be terminated now !')
         generic_message = (
-            'Something wrong with DB or conf.txt is incorrect !')
+            'Something wrong with DB or config.json is incorrect !')
         # Connection to the database
         while True:
             try:
