@@ -29,7 +29,7 @@ class LibreNMSReport():
         Method for send query to Maria DB and gets back the list of tuples
         '''
         passwd_error = (
-            'Your password is incorrect ! ' + '\n'
+            'Your credentials is incorrect ! ' + '\n'
             'Program will be terminated now !')
         generic_message = (
             'Something wrong with DB or conf.txt is incorrect !')
@@ -41,20 +41,23 @@ class LibreNMSReport():
                     user=self.user,
                     passwd=self.passwd,
                     database=self.db_name)
-                # Creation the cursor object
-                cursor = db.cursor()
-                # Send query to the DB
-                cursor.execute(query)
-                # Get result of the query
-                self.query_output = cursor.fetchall()
-                # Closing connection to the DB
-                db.close()
-                return
+            # Handle incorrect login credentials
             except SQL.errors.ProgrammingError:
                 print(passwd_error)
                 exit()
-            except SQL.errors:
+            # Handle incorrect host or DB credentials
+            except SQL.errors.InterfaceError:
                 print(generic_message)
+                exit()
+            # Creation the cursor object
+            cursor = db.cursor()
+            # Send query to the DB
+            cursor.execute(query)
+            # Get result of the query
+            self.query_output = cursor.fetchall()
+            # Closing connection to the DB
+            db.close()
+            return
 
     def generate_report(self):
         '''
