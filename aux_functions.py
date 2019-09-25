@@ -54,3 +54,19 @@ def get_credentials():
         credentials = load(config)
     credentials['passwd'] = passwd
     return tuple(credentials.values())
+
+# Functions for getting date range from user input to report generation
+def get_date_range():
+    ctrl_c_message = (
+        '\n' + 'You pressed Ctrl-C ! Program will be terminated now !')
+    inform_message = (
+        'Inputting dates must be compliant with following format :'
+        '\n' + 'xxxxyyzz where xxxx - year, yy - month, zz - day.')
+    print(inform_message)
+    try:
+        first_date = input('Provide start date > ')
+        second_date = input('Provide finish date > ')
+    except KeyboardInterrupt:
+                print(ctrl_c_message)
+                exit()
+    return first_date, second_date
